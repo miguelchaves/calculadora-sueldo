@@ -1,0 +1,52 @@
+{
+  "name": "calculadora-sueldo",
+  "version": "1.0.0",
+  "description": "Calculadora de sueldo bruto o neto e IRPF",
+  "main": "dist/calculadora-sueldo.js",
+  "module": "dist/calculadora-sueldo.mjs",
+  "typings": "dist/calculadora-sueldo.d.ts",
+  "scripts": {
+    "build": "rimraf dist && rollup -c",
+    "dev": "rollup -c -w",
+    "test": "mocha --require ts-node/register test/test.ts",
+    "help": "rollup -h"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/miguelchaves/calculadora-sueldo.git"
+  },
+  "keywords": [
+    "calculadora",
+    "sueldo",
+    "sueldo",
+    "bruto",
+    "sueldo",
+    "neto",
+    "sueldo",
+    "irpf"
+  ],
+  "author": "Miguel Chaves",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/miguelchaves/calculadora-sueldo/issues"
+  },
+  "homepage": "https://github.com/miguelchaves/calculadora-sueldo#readme",
+  "devDependencies": {
+    "@rollup/plugin-eslint": "^8.0.2",
+    "@types/mocha": "^9.1.1",
+    "@types/ms": "^0.7.31",
+    "esbuild": "^0.14.39",
+    "mocha": "^10.0.0",
+    "rimraf": "^3.0.2",
+    "rollup": "^2.74.1",
+    "rollup-plugin-commonjs": "^10.1.0",
+    "rollup-plugin-dts": "^4.2.1",
+    "rollup-plugin-esbuild": "^4.9.1",
+    "rollup-plugin-node-resolve": "^5.2.0",
+    "rollup-plugin-typescript": "^1.0.1",
+    "rollup-plugin-uglify": "^6.0.4",
+    "ts-node": "^10.8.0",
+    "tslib": "^2.4.0",
+    "typescript": "^4.6.4"
+  }
+}
