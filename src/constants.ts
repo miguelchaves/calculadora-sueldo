@@ -1,13 +1,12 @@
 /**
  * Algoritmo de retencion:
- * 2019: https://www.agenciatributaria.es/static_files/AEAT/Contenidos_Comunes/La_Agencia_Tributaria/Informacion_institucional/Campanias/Retenciones_trabajo_personal/2019/ALGORITMO_2019.pdf
- * 2020: https://www.agenciatributaria.es/static_files/Sede/Programas_ayuda/Retenciones/2020/ALGORITMO_RETENCIONES_2020.pdf
  * 2021: https://www.agenciatributaria.es/static_files/Sede/Programas_ayuda/Retenciones/2021/ALGORITMO_2021_LPGE.pdf
+ * 2022: https://sede.agenciatributaria.gob.es/static_files/Sede/Programas_ayuda/Retenciones/2022/ALGORITMO_RETENCIONES_2022.pdf
  */
 
 /*
   * Cálculo de rendimiento neto
-  * https://www.agenciatributaria.es/AEAT.internet/Inicio/Ayuda/Manuales__Folletos_y_Videos/Manuales_practicos/_Ayuda_Folleto_Actividades_economicas/3__Impuesto_sobre_la_Renta_de_las_Personas_Fisicas/3_4_Estimacion_directa_normal/3_4_2__Calculo_del_rendimiento_neto/3_4_2__Calculo_del_rendimiento_neto.html
+  * https://sede.agenciatributaria.gob.es/Sede/ayuda/manuales-videos-folletos/manuales-practicos/folleto-actividades-economicas/3-impuesto-sobre-renta-personas-fisicas/3_4-estimacion-directa-normal/3_4_2-calculo-rendimiento-neto.html
   */
 export const reduccionesRendimientoNeto = {
   comun: 2000,
@@ -22,7 +21,7 @@ export const reduccionesRendimientoNeto = {
 
 /*
   * Mínimo personal, familiar, por discapacidad, por ascendientes y descendientes:
-  * https://www.agenciatributaria.es/AEAT.internet/Inicio/_Segmentos_/Ciudadanos/Discapacitados/Minimo_personal__familiar_y_por_discapacidad.shtml
+  * https://sede.agenciatributaria.gob.es/Sede/ayuda/manuales-videos-folletos/manuales-practicos/irpf-2021/capitulo-14-adecuacion-impuesto-circunstancias-personales/minimo-contribuyente.html
   */
 export const minimoPersonal = {
   normal: 5550,
@@ -32,7 +31,7 @@ export const minimoPersonal = {
 
 /**
  * Cuantías aplicables por el número de hijos:
- * https://www.agenciatributaria.es/AEAT.internet/Inicio/_Segmentos_/Ciudadanos/Minimos__reducciones_y_deducciones_en_el_IRPF/Minimos/Minimo_por_descendientes/Cuantias_aplicables.shtml
+ * https://sede.agenciatributaria.gob.es/Sede/ayuda/manuales-videos-folletos/manuales-practicos/irpf-2021/capitulo-14-adecuacion-impuesto-circunstancias-personales/minimo-descendientes/cuantias-aplicables.html
  */
 export const minimoDescendientes = {
   menoresDe3: 2800,
@@ -73,7 +72,7 @@ export const combos = {
   ],
   /**
    * Base de cotizaciones a la seguridad social por tipo de contrato y categoría profesional:
-   * http://www.seg-social.es/wps/portal/wss/internet/Trabajadores/CotizacionRecaudacionTrabajadores/36537
+   * https://www.seg-social.es/wps/portal/wss/internet/Trabajadores/CotizacionRecaudacionTrabajadores/10721/10957/583
    */
   tipoContrato: [
     {
@@ -212,7 +211,7 @@ export const minimoSituacionFamiliar: any = {
 
 /**
  * Retenciones del rendimiento de trabajo:
- * https://www.agenciatributaria.es/AEAT.internet/Inicio/_Segmentos_/Ciudadanos/Retenciones_a_cuenta_del_IRPF/_Que_rentas_estan_sometidas_a_retencion_o_ingreso_a_cuenta_/Rendimientos_de_trabajo.shtml
+ * Página 29 Algoritmo retención 2022
  */
 export const tramosRetenciones = [
   {
