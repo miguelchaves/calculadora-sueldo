@@ -54,28 +54,23 @@ jobs:
         reporter: 'mocha-json'                     # Format of test results
 
     - name: Test Conclusion
-      run: echo "Stats are ${{ fromJSON( steps.test-results.outputs.testJson) }}"
+      run: echo "Stats are ${{ fromJSON( steps.test-results.outputs.testJson ) }}"
 
     - name: Set badge color
       shell: bash
       run: |
-        case ${{ fromJSON( steps.test-results.outputs.json ).conclusion }} in
-          success)
-            echo "BADGE_COLOR=31c653" >> $GITHUB_ENV
-            ;;
-          failure)
+        if [${{ fromJSON( steps.test-results.outputs.testJson ).stats.failures }} -gt 0]
+          then
             echo "BADGE_COLOR=800000" >> $GITHUB_ENV
-            ;;
-          neutral)
-            echo "BADGE_COLOR=696969" >> $GITHUB_ENV
-            ;;
-        esac
+          else
+            echo "BADGE_COLOR=31c653" >> $GITHUB_ENV
+        fi
 
     - name: Create badge
       uses: emibcn/badge-action@d6f51ff11b5c3382b3b88689ae2d6db22d9737d1
       with:
         label: Tests
-        status: '${{ fromJSON( steps.test-results.outputs.json ).formatted.stats.tests }} tests, ${{ fromJSON( steps.test-results.outputs.json ).formatted.stats.runs }} runs: ${{ fromJSON( steps.test-results.outputs.json ).conclusion }}'
+        status: '${{ fromJSON( steps.test-results.outputs.testJson ).stats.tests }} tests, ${{ fromJSON( steps.test-results.outputs.json ).stats.passes }} passes, : ${{ fromJSON( steps.test-results.outputs.json ).stats.failures }} failures'
         color: ${{ env.BADGE_COLOR }}
         path: badge.svg
 
