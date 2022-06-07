@@ -27,11 +27,25 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
-    - run: npm ci
-    - run: npm test
+        
+    - name: NPM Install
+      run: npm ci
+      
+    - name: Run Tests
+      run: npm test
+      
+    - name: Set tests as output
+      id: test-results
+      run: |
+        content=`cat ${{ github.workspace }}/report.json`
+        # the following lines are only required for multi line json
+        content="${content//'%'/'%25'}"
+        content="${content//$'\n'/'%0A'}"
+        content="${content//$'\r'/'%0D'}"
+        # end of optional handling for multi line json
+        echo "::set-output name=testJson::$content";
     
     - name: Test Results
-      id: test-results
       uses: dorny/test-reporter@v1
       if: success() || failure()
       with:
@@ -40,7 +54,7 @@ jobs:
         reporter: 'mocha-json'                     # Format of test results
 
     - name: Test Conclusion
-      run: echo "Stats are ${{ fromJSON( steps.test-results.outputs.json ).conclusion }}"
+      run: echo "Stats are ${{ fromJSON( steps.test-results.outputs.testJson) ) }}"
 
     - name: Set badge color
       shell: bash
