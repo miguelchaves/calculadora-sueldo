@@ -22,7 +22,41 @@ La librería expone la clase `CalculadoraSueldo`, que, una vez instanciada, tend
 
 Además, todos los combos necesarios para mostrar en el formulario están definidos como arrays en `combos`.
 
-#### Calcular Sueldo Neto
+### Datos de entrada:
+
+| Campo | Tipo | Descripción | Valor por defecto | Ejemplo |
+|-------|-----|--------------|-------------------|---------|
+| `brutoAnual` | `Number` | Sueldo bruto anual, obligatorio para calcular sueldo neto | N/A | `30000` |
+| `netoMensual` | `Number` | Sueldo neto mensual, obligatorio para calcular sueldo bruto anual | N/A | `2500` |
+| `numeroPagas`| `Number` | Número de pagas repartidas en el año | `12` | ` 14` |
+| `edad` | `Number` | Edad en años (> 16 y < 150) | N/A | `30` | 
+| `conyugeCobraMasDe1500` | `Boolean` | Opcional, solo aplica para casados | `false` | `true`|
+| `movilidadGeografica` | `Boolean` | Indica si tiene o no movilidad geográfica | `false` | `true` |
+| `esDiscapacitado`| `Boolean` | Indica si es o no disacapacitado | `false` | ` true` |
+| `discapacidadMayorDe65`| `Boolean` | Indica si su discpacidad es > 65%. Solo aplica cuando `esDiscacitado = true`| `false` | `true` |
+| `hijos` | `Hijo[]` | Array de hijos, se puede importar la clase `Hijo` de la librería | `[]` | `[]` |
+| `hijosEnExclusividad` | `Boolean`| Indica si tiene los hijos en exclusividad a efectos fiscales. Solo aplica cuando se informan hijos | `false` | `true` |
+| `ascendientes` | `Ascendiente[]` | Array de mayores a cargo. Se puede importar la clase `Ascendiente` de la librería | `[]`| `[]` |
+| `personasDeduccionAscendientes` | `Number` | Número de contribuyentes a cargo del cuidado de los mayores, incluyéndote a ti (>= 1). Solo aplica cuando se informan ascendientes | `1` | `3`|
+| `tipoContrato` | `String` | Identificador del tipo de contrato. Ver `combos.tipoContrato` | `"general"` | `"temporal"`
+| `categoriaProfesional` | `String` | Identificador de la categoría profesional. Ver `combos.categoriaProfesional` | `A` | `B` |
+| `estadoCivil` | `String`| Identificador del estado civil. Ver `combos.estadoCivil` | `2` | `1` |
+
+### Datos de salida:
+
+| Campo | Tipo | Descripción | Ejemplo |
+|-------|-----|--------------|---------|
+| `brutoAnual` | `Number` | Sueldo bruto anual | `30000` |
+| `netoAnual` | `Number` | Sueldo neto anual, sumando pagas ordinarias y extras | `2500` |
+| `netoMensual` | `Number` | Sueldo neto mensual | `2500` |
+| `tieneExtras`| `Boolean` | Indica si tiene pagas extras (`numeroPagas > 12`) | `false` |
+| `pagasExtras` | `Number` | Importe de cada paga extra | `2815.25` | 
+| `retencionIRPF` | `Number` | Importe total de la retención por IRPF | `8437.28` |
+| `tipoRetencionIRPF` | `Number` | Porcentaje de retención de IRPF sobre el sueldo bruto | `0.195` |
+| `cuotasSeguridadSocial`| `Number` | Importe total anual de las cuotas de la Seguridad Social | `1905` |
+| `iteraciones`| `Number` | Indica la cantidad de iteraciones realizadas para el cálculo del sueldo bruto. Sin interés para el cliente | `9` |
+
+### Calcular Sueldo Neto
 
 Calcula el sueldo neto a partir del sueldo bruto anual.
 
@@ -34,42 +68,19 @@ const SOLTERO = combos.estadoCivil[1].id;
 const INDEFINIDO = combos.tipoContrato[0].id;
 
 const input = {
-  /** @type {Number} Sueldo bruto anual */
   brutoAnual: 30000,
-  /** @type {Number} Número de pagas. Opcional, 12 por defecto.
-   * Debe ser >=12 */
   numeroPagas: 14,
-  /** @type {Number} Edad en años */
   edad: 45,
-  /** @type {Boolean} Opcional, false por defecto.
-   * Solo aplica para casados */
   conyugeCobraMasDe1500: false,
-  /** @type {Boolean} Opcional, false por defecto */
   movilidadGeografica: false,
-  /** @type {Boolean} Opcional, false por defecto */
   esDiscapacitado: false,
-  /** @type {Boolean} Opcional, false por defecto */
   discapacidadMayorDe65: false,
-  /** @type {Hijos[]} Opcional, [] por defecto
-   * Se puede importar la clase Hijo de la librería */
   hijos: [],
-  /** @type {Boolean} Opcional, false por defecto */
   hijosEnExclusividad: false,
-  /** @type {Ascendiente[]} Opcional, [] por defecto
-   * Se puede importar la clase Ascendiente de la librería */
   ascendientes: [],
-  /** @type {Number} Número de personas que se deducen del cuidado del mayor.
-   * Opcional, 1 por defecto
-   * Debe ser > 1 (incluyéndote a ti) */
   personasDeduccionAscendientes: 1,
-  /** @type {string} Identificador del tipo de contrato
-   * Disponible en combos.tipoContrato[].id */
   tipoContrato: INDEFINIDO,
-  /** @type {string} Identificador de la categoría profesional
-   * Disponible en combos.categoriaProfesional[].id */
   categoriaProfesional: INGENIERO,
-  /** @type {string} Identificador del estado civil
-   * Disponible en combos.estadoCivil[].id */
   estadoCivil: SOLTERO
 };
 
@@ -77,21 +88,13 @@ const output = new CalculadoraSueldo(inputs).calcularSueldoNeto();
 
 // Valores obtenidos:
 const {
-  /** @type {Number} valor de entrada */
   brutoAnual,
-  /** @type {Number} Sueldo neto anual */
   netoAnual,
-  /** @type {Number} Sueldo neto mensual, sin contar pagas extras */
   netoMensual,
-  /** @type {Boolean} Tiene pagas extras si el número de pagas es > 12 */
   tieneExtras,
-  /** @type {Number} Importe de cada paga extra */
   pagasExtras,
-  /** @type {Number} Importe anual de la retención por IRPF */
   retencionIRPF,
-  /** @type {Number} Porcentaje de la retención por IRPF. Por ejemplo: 0.15 */
   tipoRetencionIRPF,
-  /** @type {Number} Importe anual de las cuotas a la seguridad social */
   cuotasSeguridadSocial
 } = output;
 ```
@@ -107,42 +110,11 @@ const SOLTERO = combos.estadoCivil[1].id;
 const INDEFINIDO = combos.tipoContrato[0].id;
 
 const input = {
-  /** @type {Number} Sueldo bruto anual */
   netoMensual: 3000,
-  /** @type {Number} Número de pagas. Opcional, 12 por defecto.
-   * Debe ser >=12 */
   numeroPagas: 14,
-  /** @type {Number} Edad en años */
   edad: 45,
-  /** @type {Boolean} Opcional, false por defecto.
-   * Solo aplica para casados */
-  conyugeCobraMasDe1500: false,
-  /** @type {Boolean} Opcional, false por defecto */
-  movilidadGeografica: false,
-  /** @type {Boolean} Opcional, false por defecto */
-  esDiscapacitado: false,
-  /** @type {Boolean} Opcional, false por defecto */
-  discapacidadMayorDe65: false,
-  /** @type {Hijos[]} Opcional, [] por defecto
-   * Se puede importar la clase Hijo de la librería */
-  hijos: [],
-  /** @type {Boolean} Opcional, false por defecto */
-  hijosEnExclusividad: false,
-  /** @type {Ascendiente[]} Opcional, [] por defecto
-   * Se puede importar la clase Ascendiente de la librería */
-  ascendientes: [],
-  /** @type {Number} Número de personas que se deducen del cuidado del mayor.
-   * Opcional, 1 por defecto
-   * Debe ser > 1 (incluyéndote a ti) */
-  personasDeduccionAscendientes: 1,
-  /** @type {string} Identificador del tipo de contrato
-   * Disponible en combos.tipoContrato[].id */
   tipoContrato: INDEFINIDO,
-  /** @type {string} Identificador de la categoría profesional
-   * Disponible en combos.categoriaProfesional[].id */
   categoriaProfesional: INGENIERO,
-  /** @type {string} Identificador del estado civil
-   * Disponible en combos.estadoCivil[].id */
   estadoCivil: SOLTERO
 };
 
@@ -150,42 +122,19 @@ const output = new CalculadoraSueldo(inputs).calcularSueldoBruto();
 
 // Valores obtenidos:
 const {
-  brutoAnual,                       // Number
-  netoAnual,                        // Number, suma de las pagas mensuales y extras
-  netoMensual,                      // Number, cantidad del sueldo mensual
-  tieneExtras,                      // Boolean
-  pagasExtras,                      // Number, cantidad de cada paga extra
-  retencionIRPF,                    // Number, cantidad de retencion por IRPF
-  tipoRetencionIRPF,                // Number, porcentaje de retencion por IRPF sobre el sueldo bruto
-  cuotasSeguridadSocial             // Number, cantidad anual de retención de la Seguridad Social
-  iteraciones                       // Number, indica la cantidad de iteraciones realizadas (sin interes para el cliente)
-} = output;
-
-// Valores obtenidos:
-const {
-  /** @type {Number} Sueldo bruto anual */
   brutoAnual,
-  /** @type {Number} Sueldo neto anual */
   netoAnual,
-  /** @type {Number} Valor de entrada. Sueldo neto mensual, sin contar pagas extras */
   netoMensual,
-  /** @type {Boolean} Tiene pagas extras si el número de pagas es > 12 */
   tieneExtras,
-  /** @type {Number} Importe de cada paga extra */
   pagasExtras,
-  /** @type {Number} Importe anual de la retención por IRPF */
   retencionIRPF,
-  /** @type {Number} Porcentaje de la retención por IRPF. Por ejemplo: 0.15 */
   tipoRetencionIRPF,
-  /** @type {Number} Importe anual de las cuotas a la seguridad social */
-  cuotasSeguridadSocial,
-  /** @type {Number} indica la cantidad de iteraciones realizadas
-   * (sin interes para el cliente) */
+  cuotasSeguridadSocial
   iteraciones
 } = output;
 ```
 
-#### Clases Hijo y Ascendiente
+### Clases Hijo y Ascendiente
 
 Deben tener definidas las propiedades `edad`, `esDiscapacitado` y `discapacidadMayorDe65`. Pueden ser simples objetos:
 
@@ -200,9 +149,41 @@ const hijo2 = {
 // hijo1 ~= hijo2
 ```
 
-#### Combos
+### Combos
 
-El valor de los parámetros `tipoContrato`, `categoríaProfesional` o `estadoCivil` deben coincidir con la propiedad `id` de los combos definidos en `constants`. Pueden usarse estos combos a modo de `select`s en el formulario, aunque será necesaria la traducción de los literales a otros idiomas.
+El valor de los parámetros `tipoContrato`, `categoríaProfesional` o `estadoCivil` deben coincidir con la propiedad `id` de los combos definidos en `combos`. Pueden usarse estos combos a modo de `select`s en el formulario.
+
+#### Tipo de contrato
+| id | text |
+|----|------|
+| `"general"` | General |
+| `"temporal"` | Inferior a 12 meses |
+
+
+#### Estado civil
+| id | text |
+|----|------|
+| `"1"` | Viudo/a |
+| `"2"` | Soltero/a |
+| `"3"` | Divorciado/a |
+| `"4"` | Separado/a legalmente |
+| `"5"` | Casado/a |
+
+
+#### Categoría profesional
+| id | text |
+|----|------|
+| `"A"` | Ingenieros y Licenciados |
+| `"B"` | Ingenieros Técnicos, Peritos y Ayudantes Titulados |
+| `"C"` | Jefes Administrativos y de Taller |
+| `"D"` | Ayudantes no Titulados |
+| `"E"` | Oficiales Administrativos |
+| `"F"` | Subalternos |
+| `"G"` | Auxiliares Administrativos |
+| `"H"` | Oficiales de primera y segunda |
+| `"I"` | Oficiales de tercera y Especialistas |
+| `"J"` | Peones |
+| `"K"` | Trabajadores menores de dieciocho años, cualquiera |
 
 
 Construcción
