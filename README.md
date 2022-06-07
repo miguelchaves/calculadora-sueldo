@@ -67,7 +67,7 @@ const INGENIERO = combos.categoriaProfesional[0].id;
 const SOLTERO = combos.estadoCivil[1].id;
 const INDEFINIDO = combos.tipoContrato[0].id;
 
-const input = {
+const inputs = {
   brutoAnual: 30000,
   numeroPagas: 14,
   edad: 45,
@@ -109,7 +109,7 @@ const INGENIERO = combos.categoriaProfesional[0].id;
 const SOLTERO = combos.estadoCivil[1].id;
 const INDEFINIDO = combos.tipoContrato[0].id;
 
-const input = {
+const inputs = {
   netoMensual: 3000,
   numeroPagas: 14,
   edad: 45,
