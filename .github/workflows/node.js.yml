@@ -53,9 +53,6 @@ jobs:
         path: ${{ github.workspace }}/report.json  # Path to test results (inside artifact .zip)
         reporter: 'mocha-json'                     # Format of test results
 
-    - name: Test Conclusion
-      run: echo "Stats are ${{ fromJSON( steps.test-results.outputs.testJson ) }}"
-
     - name: Set badge color
       shell: bash
       run: |
@@ -70,7 +67,7 @@ jobs:
       uses: emibcn/badge-action@d6f51ff11b5c3382b3b88689ae2d6db22d9737d1
       with:
         label: Tests
-        status: '${{ fromJSON( steps.test-results.outputs.testJson ).stats.tests }} tests, ${{ fromJSON( steps.test-results.outputs.testJson ).stats.passes }} passes, : ${{ fromJSON( steps.test-results.outputs.testJson ).stats.failures }} failures'
+        status: '${{ fromJSON( steps.test-results.outputs.testJson ).stats.tests }} tests: ${{ fromJSON( steps.test-results.outputs.testJson ).stats.passes }} passes, ${{ fromJSON( steps.test-results.outputs.testJson ).stats.failures }} failures'
         color: ${{ env.BADGE_COLOR }}
         path: badge.svg
 
