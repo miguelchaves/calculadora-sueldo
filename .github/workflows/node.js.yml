@@ -32,7 +32,7 @@ jobs:
     
     - name: Test Output
       id: test-results
-      run: npm test:json
+      run: npm run test:json
 
     - name: Test Stats
       run: echo "Stats are ${{ fromJSON( steps.test-results.outputs.json ).stats }}"
