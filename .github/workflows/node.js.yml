@@ -54,7 +54,7 @@ jobs:
         reporter: 'mocha-json'                     # Format of test results
 
     - name: Test Conclusion
-      run: echo "Stats are ${{ fromJSON( steps.test-results.outputs.testJson) ) }}"
+      run: echo "Stats are ${{ fromJSON( steps.test-results.outputs.testJson) }}"
 
     - name: Set badge color
       shell: bash
