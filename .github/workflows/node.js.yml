@@ -31,9 +31,7 @@ jobs:
     - run: npm test
     
     - name: Test Output
-      id: test-results
-      run: npm run test:json            # run tests (configured to use jest-junit reporter)
-    - uses: dorny/test-reporter@v1
+      uses: dorny/test-reporter@v1
       with:
         artifact: test-results            # artifact name
         name: Mocha Tests                 # Name of the check run which will be created
