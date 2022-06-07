@@ -30,7 +30,7 @@ jobs:
     - run: npm test
 
     - name: Publish Test Results
-      uses: miguelchaves/calculadora-sueldo@v1
+      uses: EnricoMi/publish-unit-test-result-action@v1
       id: test-results
       if: always()
       with:
