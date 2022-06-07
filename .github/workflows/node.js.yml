@@ -23,19 +23,19 @@ jobs:
     - uses: actions/checkout@v3
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v3
-      id: test-results
       if: always()
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
     - run: npm ci
-    - run: npm test
+    - run: npm test:json
     
     - name: Test Output
-      run: echo "${{ steps.test-results.outputs.json }}"
+      id: test-results
+      run: npm test:json
 
-    - name: Conclusion
-      run: echo "Conclusion is ${{ fromJSON( steps.test-results.outputs.json ).conclusion }}"
+    - name: Test Stats
+      run: echo "Stats are ${{ fromJSON( steps.test-results.outputs.json ).stats }}"
 
     - name: Set badge color
       shell: bash
