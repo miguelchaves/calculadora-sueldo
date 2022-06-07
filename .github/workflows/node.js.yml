@@ -30,7 +30,8 @@ jobs:
     - run: npm ci
     - run: npm test
     
-    - name: Test Output
+    - name: Test Results
+      id: test-results
       uses: dorny/test-reporter@v1
       if: success() || failure()
       with:
