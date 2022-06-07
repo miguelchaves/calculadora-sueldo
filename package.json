@@ -9,6 +9,7 @@
     "build": "rimraf dist && rollup -c",
     "dev": "rollup -c -w",
     "test": "mocha --require ts-node/register test/test.ts --reporter json --reporter-options output=report.json",
+    "test:no-file": "mocha --require ts-node/register test/test.ts",
     "help": "rollup -h"
   },
   "repository": {

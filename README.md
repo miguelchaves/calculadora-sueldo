@@ -211,9 +211,9 @@ Construcción
 $ npm run build
 ```
 Crea diferentes versiones de la librería en `dist/`:
-* `dist/cualculadora-sueldo.js` Módulo en formato *CommonsJS*
-* `dist/cualculadora-sueldo.mjs` Módulo en formato *ES6*
-* `dist/cualculadora-sueldo.d.ts` Declaración de tipos para Typescript
+* `dist/cualculadora-sueldo.js`. Módulo en formato *CommonsJS*
+* `dist/cualculadora-sueldo.mjs`. Módulo en formato *ES6*
+* `dist/cualculadora-sueldo.d.ts`. Declaración de tipos para *Typescript*
 
 Historial de versiones
 -------------
@@ -224,5 +224,9 @@ Tests
 -------------
 
 ```bash
+# Devuelve el resultado por la salida del terminal sin generar archivos:
+$ npm run test:no-file
+
+# Devuelve el resultado en un JSON: report.json
 $ npm test
 ```
