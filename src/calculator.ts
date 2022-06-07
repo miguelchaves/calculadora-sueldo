@@ -99,7 +99,7 @@ export class CalculadoraSueldo {
     this.personasDeduccionAscendientes = properties.personasDeduccionAscendientes || 1;
     this.tipoContrato = properties.tipoContrato || combos.tipoContrato[0].id;
     this.categoriaProfesional = properties.categoriaProfesional || combos.categoriaProfesional[0].id;
-    this.estadoCivil = properties.estadoCivil || combos.estadoCivil[0].id;
+    this.estadoCivil = properties.estadoCivil || combos.estadoCivil[1].id;
   }
 
   calcularSueldoNeto(): SueldoNetoOutput {
