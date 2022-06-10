@@ -10,11 +10,6 @@ const name = require('./package.json').main.replace(/\.js$/, '');
 const bundle = config => ({
   ...config,
   input: 'src/index.ts',
-  plugins: [
-    eslint({
-      fix: true
-    })
-  ],
   external: id => !/^[./]/.test(id),
 })
 

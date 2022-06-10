@@ -33,7 +33,6 @@
   },
   "homepage": "https://github.com/miguelchaves/calculadora-sueldo#readme",
   "devDependencies": {
-    "@rollup/plugin-eslint": "^8.0.2",
     "@types/mocha": "^9.1.1",
     "@types/ms": "^0.7.31",
     "esbuild": "^0.14.39",
