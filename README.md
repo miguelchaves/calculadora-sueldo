@@ -15,6 +15,9 @@ Instalación
 $ npm install calculadora-sueldo
 ```
 
+Para probar la librería puedes hacer uso de la siguiente aplicación: https://herramientas-financieras.firebaseapp.com/calculadora-sueldo
+
+
 Documentación
 -------------
 
