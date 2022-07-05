@@ -6,7 +6,9 @@
 [![GitHub license badge](https://badgen.net/github/license/miguelchaves/calculadora-sueldo)](https://github.com/miguelchaves/calculadora-sueldo/blob/main/LICENSE)
 
 ## Descripcion
-Librería Javascript & Typescript para calcular sueldo bruto anual, o sueldo neto mensual, junto con el IRPF a partir del algoritmo de la Agencia Tritubaria
+Librería Javascript & Typescript para calcular sueldo bruto anual, o sueldo neto mensual, junto con el IRPF a partir del algoritmo de la Agencia Tritubaria.
+
+Para probar la librería puedes hacer uso de la siguiente aplicación: https://herramientas-financieras.firebaseapp.com/calculadora-sueldo
 
 Instalación
 -----------
@@ -14,9 +16,6 @@ Instalación
 ```bash
 $ npm install calculadora-sueldo
 ```
-
-Para probar la librería puedes hacer uso de la siguiente aplicación: https://herramientas-financieras.firebaseapp.com/calculadora-sueldo
-
 
 Documentación
 -------------
