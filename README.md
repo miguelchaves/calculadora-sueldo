@@ -8,7 +8,7 @@
 ## Descripcion
 Librería Javascript & Typescript para calcular sueldo bruto anual, o sueldo neto mensual, junto con el IRPF a partir del algoritmo de la Agencia Tritubaria.
 
-Para probar la librería puedes hacer uso de la siguiente aplicación: https://herramientas-financieras.firebaseapp.com/calculadora-sueldo
+Para probar la librería puedes hacer uso de la siguiente aplicación: https://herramientas-financieras.web.app/calculadora-sueldo
 
 Instalación
 -----------
